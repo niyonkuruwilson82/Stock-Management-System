@@ -10,23 +10,21 @@ class ProductIn extends Model
 {
     use HasFactory;
 
-    protected $table = 'product_ins'; // Ensure this matches your DB table
-    protected $primaryKey = 'InCode'; // Use 'InCode' if it's your actual PK
+    protected $table = 'product_ins';
+    protected $primaryKey = 'ProductIn_id'; // ✅ This matches your actual DB column
     public $incrementing = true;
     protected $keyType = 'int';
 
-    // Correct fillable fields to match your controller's input
     protected $fillable = [
         'PCode',
         'prIn_Date',
         'prIn_Quantity',
         'prIn_Unit_Price',
-        'prIn_TotalPrice'
+        'prIn_TotalPrice',
     ];
 
-    // Relationship to Product
     public function product()
     {
-        return $this->belongsTo(Product::class, 'PCode');
+        return $this->belongsTo(Product::class, 'PCode', 'PCode');
     }
 }
